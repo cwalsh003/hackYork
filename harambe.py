@@ -15,6 +15,6 @@ def callDevice():
             "time": location['time']
         }
     }
-    return jsonify(rating = bossPlaya.finalRating(location[str(lat)],location[str(lon)]))
+    return jsonify(rating = bossPlaya.finalRating(location['lat'],location['lon']))
 if __name__ == '__main__':
     app.run(host = '0.0.0.0', port = 8000, debug = True)

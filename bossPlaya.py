@@ -9,6 +9,8 @@ myDict2 = dict()
 ctr = 0
 #pass location[lat],location[lon] through function
 def finalRating(lat,lon):
+    print(lat)
+    print(lon)
     lat = str(round(lat,2))
     lon = str(round(lon,2))
 

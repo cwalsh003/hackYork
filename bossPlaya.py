@@ -4,6 +4,7 @@ import pprint
 import redis
 from flask import Flask, request, jsonify
 from bs4 import BeautifulSoup
+
 # from collections import OrderedDict
 myDict = dict()
 myDict2 = dict()
@@ -17,7 +18,8 @@ def finalRating(lat,lon):
     print(lon1 + '\n')
     url = ("http://api.spotcrime.com/crimes.json?lat=" + lat1 + "&lon=" + lon1 + "&radius=0.2&key=.")
     print(url)
-    thepage = urllib.request.urlopen(url)
+    thepage = requests.get(url)
+    print(thepage)
     soup = BeautifulSoup(thepage, "html.parser")
     for crimes in soup.findAll('pre'):
         myDict = json.loads(crimes)

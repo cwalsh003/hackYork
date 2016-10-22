@@ -9,15 +9,17 @@ myDict2 = dict()
 ctr = 0
 #pass location[lat],location[lon] through function
 def finalRating(lat,lon):
-    print(lat)
-    print(lon)
-    lat = str(round(lat,2))
-    lon = str(round(lon,2))
 
-    url = ("http://api.spotcrime.com/crimes.json?" + lat + "&" + lon + "&radius=0.2&key=")
-
+    lat1 = str(round(float(lat),2))
+    lon1 = str(round(float(lon),2))
+    print(lat1 + '\n')
+    print(lon1 + '\n')
+    url = ("http://api.spotcrime.com/crimes.json?lat=" + lat1 + "&lon=" + lon1 + "&radius=0.2&key=.")
+    print(url)
     r = requests.get(url)
-
+    if(r == None):
+         print("null!!!!!!!!!\n") 
+    print(r.text)
     myDict = r.json()
 
     latSum = 0

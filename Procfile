@@ -1,1 +1,1 @@
-web: python harambe.py
+python harambe.py

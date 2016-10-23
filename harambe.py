@@ -8,10 +8,10 @@ app = Flask(__name__)
 
 def callDevice():
     location = request.args
-    print(request.args)
+    # print(request.args)
 
     crimedata = request.json
-    print(crimedata)
+    # print(crimedata)
     print(json.dumps(crimedata['crimes']))
     payload = {
         "geolocation": {
@@ -21,6 +21,6 @@ def callDevice():
         }
     }
     return jsonify(rating=4)
-    #return jsonify(rating = bossPlaya.finalRating(location['lat'],location['lon']))
+    return jsonify(rating = bossPlaya.finalRating(location['lat'],location['lon'], json.dumps(crimedata))
 if __name__ == '__main__':
     app.run(host = '0.0.0.0', port = 8000, debug = True)

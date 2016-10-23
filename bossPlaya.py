@@ -12,11 +12,15 @@ ctr = 0
 
 
 # pass location[lat],location[lon] through function
-def finalRating(lat, lon, jsonData):
+def finalRating(lat, lon):
     lat = str(round(lat, 2))
     lon = str(round(lon, 2))
 
-    myDict = jsonData
+    url = ("http://api.spotcrime.com/crimes.json?lat=" + lat + "&lon=" + lon + "&radius=0.2&key=.")
+
+    r = requests.get(url)
+
+    myDict = r.json()
     rating = 0
     latSum = 0
     lonSum = 0
@@ -34,7 +38,7 @@ def finalRating(lat, lon, jsonData):
         print(crimes)
         print(majorKey)
         if (majorKey == "lat" or majorKey == "lon"):
-             if (majorKey == "lat"):
+            if (majorKey == "lat"):
                 latSum += crimes[majorKey]
                 ctr = ctr + 1
             if (majorKey == "lon"):
@@ -51,26 +55,24 @@ def finalRating(lat, lon, jsonData):
 
     for keys in myDict2.keys():
         for majorKey in majorKeys:
-        print(keys)
-
-    if (crimes[majorKey] == "Arrest"):
-        rating += 5
-    elif (crimes[majorKey] == "Arson"):
-        rating += 8
-    elif (crimes[majorKey] == "Assault"):
-        rating += 5
-    elif (crimes[majorKey] == "Burglary"):
-        rating += 4
-    elif (crimes[majorKey] == "Robbery"):
-        rating += 2
-    elif (crimes[majorKey] == "Shooting"):
-        rating += 7
-    elif (crimes[majorKey] == "Theft"):
-        rating += 4
-    elif (crimes[majorKey] == "Vandalism"):
-        rating += 3
-    elif (crimes[majorKey] == "Other"):
-        rating += 2
+            if (crimes[majorKey] == "Arrest"):
+                rating += 5
+            elif (crimes[majorKey] == "Arson"):
+                rating += 8
+            elif (crimes[majorKey] == "Assault"):
+                rating += 5
+            elif (crimes[majorKey] == "Burglary"):
+                rating += 4
+            elif (crimes[majorKey] == "Robbery"):
+                rating += 2
+            elif (crimes[majorKey] == "Shooting"):
+                rating += 7
+            elif (crimes[majorKey] == "Theft"):
+                rating += 4
+            elif (crimes[majorKey] == "Vandalism"):
+                rating += 3
+            elif (crimes[majorKey] == "Other"):
+                rating += 2
 
     myDict2[keyTuple]["rating"] = rating
 

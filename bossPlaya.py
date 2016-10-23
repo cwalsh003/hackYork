@@ -12,15 +12,13 @@ ctr = 0
 
 
 # pass location[lat],location[lon] through function
-def finalRating(lat, lon):
-    lat = str(round(lat, 2))
-    lon = str(round(lon, 2))
+def finalRating(lat, lon, jsonData):
+    lat = str(round(float(lat), 2))
+    lon = str(round(float(lon), 2))
 
-    url = ("http://api.spotcrime.com/crimes.json?lat=" + lat + "&lon=" + lon + "&radius=0.2&key=.")
 
-    r = requests.get(url)
 
-    myDict = r.json()
+    myDict = jsonData
     rating = 0
     latSum = 0
     lonSum = 0

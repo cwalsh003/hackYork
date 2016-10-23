@@ -18,7 +18,7 @@ def finalRating(lat, lon, jsonData):
 
 
 
-    myDict = jsonData
+    myDict = json.dumps(jsonData)
     rating = 0
     latSum = 0
     lonSum = 0
